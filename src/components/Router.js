@@ -6,18 +6,18 @@ import Home from '../routes/Home';
 import Profile from '../routes/Profile'
 import Navigation from './Navigation';
 
-const AppRouter = ({isLoggedin}) => {
+const AppRouter = ({refreshUser,isLoggedin, userId}) => {
     return(
         <Router>
-            {isLoggedin && <Navigation/>}
+            {isLoggedin && <Navigation userId={userId}/>}
             <Switch>
                 {isLoggedin ? (
                 <>
                     <Route exact path='/'>
-                        <Home></Home>
+                        <Home userId={userId}></Home>
                     </Route>
                     <Route exact path='/Profile'>
-                        <Profile></Profile>
+                        <Profile userId={userId} refreshUser={refreshUser}></Profile>
                     </Route>
                 </> ): (
                     <Route exact path='/'>
